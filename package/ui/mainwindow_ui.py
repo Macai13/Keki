@@ -13,13 +13,17 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 600)
+        MainWindow.setMinimumSize(QtCore.QSize(800, 600))
+        MainWindow.setMaximumSize(QtCore.QSize(1920, 1080))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.search_label = QtWidgets.QLabel(parent=self.centralwidget)
+        self.search_label.setGeometry(QtCore.QRect(220, 240, 211, 16))
+        self.search_label.setObjectName("search_label")
+        self.search_box = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
+        self.search_box.setGeometry(QtCore.QRect(213, 270, 341, 41))
+        self.search_box.setObjectName("search_box")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 22))
-        self.menubar.setObjectName("menubar")
-        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -30,3 +34,4 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.search_label.setText(_translate("MainWindow", "What manga do you wanna read?"))
