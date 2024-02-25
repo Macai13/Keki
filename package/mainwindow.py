@@ -47,13 +47,19 @@ class MainWindow(QMainWindow):
 
 
     def spawn_chapter_box(self):
+        self.ui.search_chapter_label = QtWidgets.QLabel(parent=self.ui.centralwidget)
+        self.ui.search_chapter_label.setGeometry(QtCore.QRect(217, 90, 211, 16))
+        self.ui.search_chapter_label.setObjectName("search_chapter_label")
+        self.ui.search_chapter_label.setText("What chapter?")
+        
         self.ui.search_chapter_box = QtWidgets.QPlainTextEdit(parent=self.ui.centralwidget)
-        self.ui.search_chapter_box.setGeometry(QtCore.QRect(210, 90, 341, 41))
+        self.ui.search_chapter_box.setGeometry(QtCore.QRect(210, 120, 341, 41))
         self.ui.search_chapter_box.setObjectName("search_chapter_box")
 
         self.ui.search_chapter_box.installEventFilter(self)
 
         self.ui.search_chapter_box.show()
+        self.ui.search_chapter_label.show()
 
     
     def manga_search(self, chapter_index: str):
