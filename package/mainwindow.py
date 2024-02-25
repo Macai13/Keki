@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import QMainWindow
 from PyQt6.QtCore import QEvent, Qt
 from package.ui.mainwindow_ui import Ui_MainWindow
-from package.get_manga import get_manga
+from package.manga import get_manga
 
 class MainWindow(QMainWindow):
     def __init__(self):

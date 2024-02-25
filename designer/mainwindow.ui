@@ -29,8 +29,8 @@
    <widget class="QLabel" name="search_label">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>240</y>
+      <x>217</x>
+      <y>10</y>
       <width>211</width>
       <height>16</height>
      </rect>
@@ -42,8 +42,8 @@
    <widget class="QPlainTextEdit" name="search_box">
     <property name="geometry">
      <rect>
-      <x>213</x>
-      <y>270</y>
+      <x>210</x>
+      <y>40</y>
       <width>341</width>
       <height>41</height>
      </rect>
@@ -53,9 +53,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>380</y>
+      <y>110</y>
       <width>771</width>
-      <height>211</height>
+      <height>481</height>
      </rect>
     </property>
     <property name="text">
