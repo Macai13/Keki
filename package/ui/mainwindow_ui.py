@@ -15,13 +15,16 @@ class Ui_MainWindow(object):
         MainWindow.resize(800, 600)
         MainWindow.setMinimumSize(QtCore.QSize(800, 600))
         MainWindow.setMaximumSize(QtCore.QSize(1920, 1080))
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("designer\\../icons/mainwindow_icon.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.search_label = QtWidgets.QLabel(parent=self.centralwidget)
         self.search_label.setGeometry(QtCore.QRect(217, 10, 211, 16))
         self.search_label.setObjectName("search_label")
         self.search_box = QtWidgets.QPlainTextEdit(parent=self.centralwidget)
-        self.search_box.setGeometry(QtCore.QRect(210, 40, 341, 41))
+        self.search_box.setGeometry(QtCore.QRect(210, 30, 341, 41))
         self.search_box.setObjectName("search_box")
         self.result_label = QtWidgets.QLabel(parent=self.centralwidget)
         self.result_label.setGeometry(QtCore.QRect(10, 440, 771, 151))
@@ -37,5 +40,5 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Keki"))
         self.search_label.setText(_translate("MainWindow", "What manga do you wanna read?"))

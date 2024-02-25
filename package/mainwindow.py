@@ -53,7 +53,7 @@ class MainWindow(QMainWindow):
         self.ui.search_chapter_label.setText("What chapter?")
         
         self.ui.search_chapter_box = QtWidgets.QPlainTextEdit(parent=self.ui.centralwidget)
-        self.ui.search_chapter_box.setGeometry(QtCore.QRect(210, 120, 341, 41))
+        self.ui.search_chapter_box.setGeometry(QtCore.QRect(210, 110, 341, 41))
         self.ui.search_chapter_box.setObjectName("search_chapter_box")
 
         self.ui.search_chapter_box.installEventFilter(self)
