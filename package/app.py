@@ -7,3 +7,4 @@ def run():
     window = MainWindow()
   
     app.exec()
+    

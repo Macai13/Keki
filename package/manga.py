@@ -1,4 +1,3 @@
-from collections.abc import Mapping
 import requests
 import mangadex
 
@@ -8,17 +7,21 @@ def get_manga(manga_title: str):
     manga_list = api.get_manga_list(title=manga_title)
     manga_id = manga_list[0].manga_id
 
-    try:    
-        manga = api.get_manga_volumes_and_chapters(manga_id = manga_id)
-
-        return manga
-    except TypeError as e:
-        print(f"Manga not found\n{e}")
-
-    return None
+    return manga_id
 
 
-def get_chapter(volume_index: str, chapter_index: str, manga_dict):
-    pass
+def get_chapter(chapter_index: str, manga_id: str):
+    base_url = "https://api.mangadex.org"
 
-#chapter_id = manga['50']['chapters']['491']['id']
+    r = requests.get(
+        f"{base_url}/manga/{manga_id}/feed",
+        params={"translatedLanguage[]": "en"},
+    )
+
+    #if chapter_index in [chapter['attributes']['chapter'] for chapter in r.json()["data"]]
+
+    for chapter in r.json()["data"]:
+        if chapter_index in chapter['attributes']['chapter']:
+            return chapter['id']
+
+    return None 

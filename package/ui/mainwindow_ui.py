@@ -24,7 +24,7 @@ class Ui_MainWindow(object):
         self.search_box.setGeometry(QtCore.QRect(210, 40, 341, 41))
         self.search_box.setObjectName("search_box")
         self.result_label = QtWidgets.QLabel(parent=self.centralwidget)
-        self.result_label.setGeometry(QtCore.QRect(10, 110, 771, 481))
+        self.result_label.setGeometry(QtCore.QRect(10, 440, 771, 151))
         self.result_label.setText("")
         self.result_label.setObjectName("result_label")
         MainWindow.setCentralWidget(self.centralwidget)
