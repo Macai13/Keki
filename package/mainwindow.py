@@ -1,8 +1,9 @@
+from package.ui.mainwindow_ui import Ui_MainWindow
+from package.ui import error_dialog_ui
 from PyQt6 import QtWidgets
 from PyQt6 import QtCore
-from PyQt6.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QMainWindow, QDialog
 from PyQt6.QtCore import QEvent, Qt
-from package.ui.mainwindow_ui import Ui_MainWindow
 from package.manga import get_manga, get_chapter
 
 class MainWindow(QMainWindow):
@@ -63,7 +64,27 @@ class MainWindow(QMainWindow):
 
     
     def manga_search(self, chapter_index: str):
-        manga_id = get_manga(self.search_title)
-        manga_chapter = get_chapter(chapter_index, manga_id)
+        manga_chapter = None
+        
+        try:
+            manga_id = get_manga(self.search_title)
+            manga_chapter = get_chapter(chapter_index, manga_id)
+        except IndexError as e:
+            self.error_message("Error: Manga not found!", e)
+        except TypeError as e:
+            self.error_message("Error: Chapter not found!", e)
+        if manga_chapter == None:
+            self.error_message("Error: Chapter not found!")
+
 
         return manga_chapter
+
+    def error_message(self, message: str, error_type: Exception = None):
+        dialog = QDialog()
+        ui = error_dialog_ui.Ui_Dialog()
+        ui.setupUi(dialog)
+
+        dialog.setWindowTitle(message)
+        ui.label.setText(f"{message}\n\nException: {error_type.__str__().capitalize()}")
+
+        dialog.exec()

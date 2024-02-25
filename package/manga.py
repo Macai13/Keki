@@ -20,11 +20,10 @@ def get_chapter(chapter_index: str, manga_id: str):
 
     #if chapter_index in [chapter['attributes']['chapter'] for chapter in r.json()["data"]]
 
-    try:
-        for chapter in r.json()["data"]:
-            if chapter_index in chapter['attributes']['chapter']:
-                return chapter['id']
-    except TypeError:
-        print("Chapter not found")
+
+    for chapter in r.json()["data"]:
+        if chapter_index in chapter['attributes']['chapter']:
+            return chapter['id']
+
 
     return None 
