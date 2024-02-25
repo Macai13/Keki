@@ -2,7 +2,7 @@ from package.ui.mainwindow_ui import Ui_MainWindow
 from package.ui import error_dialog_ui
 from PyQt6 import QtWidgets
 from PyQt6 import QtCore
-from PyQt6.QtWidgets import QMainWindow, QDialog
+from PyQt6.QtWidgets import QMainWindow, QDialog, QPushButton
 from PyQt6.QtCore import QEvent, Qt
 from package.manga import get_manga, get_chapter
 
@@ -13,6 +13,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.ui.read_button = None
         self.ui.search_chapter_box = None
         self.search_title : str = ''
         self.search_chapter: str = ''
@@ -40,7 +41,12 @@ class MainWindow(QMainWindow):
 
                 chapter = self.manga_search(self.search_chapter)
 
+                if chapter != None:
+                    self.spawn_read_button()
+
                 self.ui.result_label.setText(f"The chapter ID is: {chapter}")
+
+                self.ui.search_chapter_box.clearFocus()
 
                 return True
 
@@ -62,6 +68,17 @@ class MainWindow(QMainWindow):
         self.ui.search_chapter_box.show()
         self.ui.search_chapter_label.show()
 
+
+    def spawn_read_button(self):
+        self.ui.read_button = QtWidgets.QPushButton(parent=self.ui.centralwidget)
+        self.ui.read_button.setGeometry(QtCore.QRect(350, 400, 100, 35))
+        self.ui.read_button.setObjectName("read_button")
+        self.ui.read_button.setText("Read chapter")
+
+        self.ui.read_button.clicked.connect(self.read_chapter)
+
+        self.ui.read_button.show()
+
     
     def manga_search(self, chapter_index: str):
         manga_chapter = None
@@ -76,8 +93,8 @@ class MainWindow(QMainWindow):
         if manga_chapter == None:
             self.error_message("Error: Chapter not found!")
 
-
         return manga_chapter
+
 
     def error_message(self, message: str, error_type: Exception = None):
         dialog = QDialog()
@@ -88,3 +105,7 @@ class MainWindow(QMainWindow):
         ui.label.setText(f"{message}\n\nException: {error_type.__str__().capitalize()}")
 
         dialog.exec()
+
+
+    def read_chapter(self):
+        print("reading")
