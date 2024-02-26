@@ -30,7 +30,7 @@
     <string>&lt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="next">
+  <widget class="QPushButton" name="next_button">
    <property name="geometry">
     <rect>
      <x>590</x>

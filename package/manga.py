@@ -35,15 +35,11 @@ def get_chapter(chapter_id: str):
 
 
 def get_page(url: str):
-    print("0")
-
     img = Image.open(requests.get(url, stream=True).raw)
     img = img.resize(size=(520, 780), resample=Image.Resampling.BICUBIC)
 
     qim = ImageQt(img)
     pixmap = QPixmap.fromImage(qim)
     pixmap.detach()
-
-    print("1")
 
     return pixmap

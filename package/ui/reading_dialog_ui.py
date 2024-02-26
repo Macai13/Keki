@@ -19,9 +19,9 @@ class Ui_Dialog(object):
         self.back_button = QtWidgets.QPushButton(parent=Dialog)
         self.back_button.setGeometry(QtCore.QRect(470, 830, 75, 24))
         self.back_button.setObjectName("back_button")
-        self.next = QtWidgets.QPushButton(parent=Dialog)
-        self.next.setGeometry(QtCore.QRect(590, 830, 75, 24))
-        self.next.setObjectName("next")
+        self.next_button = QtWidgets.QPushButton(parent=Dialog)
+        self.next_button.setGeometry(QtCore.QRect(590, 830, 75, 24))
+        self.next_button.setObjectName("next_button")
         self.page_image = QtWidgets.QLabel(parent=Dialog)
         self.page_image.setGeometry(QtCore.QRect(18, 15, 1061, 801))
         self.page_image.setText("")
@@ -35,4 +35,4 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Keki - Reading"))
         self.back_button.setText(_translate("Dialog", "<"))
-        self.next.setText(_translate("Dialog", ">"))
+        self.next_button.setText(_translate("Dialog", ">"))

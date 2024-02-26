@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.page_count = 0
         self.chapter_image = None
         self.ui.read_button = None
         self.ui.search_chapter_box = None
@@ -90,6 +91,7 @@ class MainWindow(QMainWindow):
 
     
     def manga_search(self, chapter_index: str):
+        self.page_count = 0
         manga_chapter = None
         
         try:
@@ -125,14 +127,27 @@ class MainWindow(QMainWindow):
 
         self.chapter = get_chapter(self.chapter_id)
 
-        print("2")
+        self.set_page(ui)
 
-        #img = Image.open(requests.get(self.chapter[0], stream=True).raw)
-        #qim = ImageQt(img)
-        #pixmap = QPixmap.fromImage(qim)
-
-        pixmap = get_page(self.chapter[0])
-
-        ui.page_image.setPixmap(pixmap)
+        ui.next_button.clicked.connect(lambda: self.next_page(ui))   
+        ui.back_button.clicked.connect(lambda: self.back_page(ui)) 
 
         dialog.exec()
+
+
+    def next_page(self, ui):
+        self.page_count += 1
+        self.set_page(ui)
+
+
+    def back_page(self, ui):
+        self.page_count -= 1
+        self.set_page(ui)
+
+    def set_page(self, ui):
+        try:    
+            self.chapter_image = get_page(self.chapter[self.page_count])
+        except IndexError as e:
+            self.error_message("Error: No more pages!", e)
+
+        ui.page_image.setPixmap(self.chapter_image)
