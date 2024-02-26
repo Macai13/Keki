@@ -9,25 +9,25 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
 
-class Ui_Keki:reading(object):
-    def setupUi(self, Keki:reading):
-        Keki:reading.setObjectName("Keki:reading")
-        Keki:reading.resize(587, 859)
+class Ui_Dialog(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(587, 859)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("designer\\../icons/mainwindow_icon.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        Keki:reading.setWindowIcon(icon)
-        self.pushButton = QtWidgets.QPushButton(parent=Keki:reading)
+        Dialog.setWindowIcon(icon)
+        self.pushButton = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton.setGeometry(QtCore.QRect(190, 830, 75, 24))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(parent=Keki:reading)
+        self.pushButton_2 = QtWidgets.QPushButton(parent=Dialog)
         self.pushButton_2.setGeometry(QtCore.QRect(310, 830, 75, 24))
         self.pushButton_2.setObjectName("pushButton_2")
 
-        self.retranslateUi(Keki:reading)
-        QtCore.QMetaObject.connectSlotsByName(Keki:reading)
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-    def retranslateUi(self, Keki:reading):
+    def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Keki:reading.setWindowTitle(_translate("Keki:reading", "Dialog"))
-        self.pushButton.setText(_translate("Keki:reading", "<"))
-        self.pushButton_2.setText(_translate("Keki:reading", ">"))
+        Dialog.setWindowTitle(_translate("Dialog", "Keki - Reading"))
+        self.pushButton.setText(_translate("Dialog", "<"))
+        self.pushButton_2.setText(_translate("Dialog", ">"))

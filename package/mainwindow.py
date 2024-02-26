@@ -1,10 +1,11 @@
 from package.ui.mainwindow_ui import Ui_MainWindow
 from package.ui import error_dialog_ui
+from package.ui import reading_dialog_ui
 from PyQt6 import QtWidgets
 from PyQt6 import QtCore
 from PyQt6.QtWidgets import QMainWindow, QDialog, QPushButton
 from PyQt6.QtCore import QEvent, Qt
-from package.manga import get_manga, get_chapter
+from package.manga import get_manga, get_chapter_id
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -85,7 +86,7 @@ class MainWindow(QMainWindow):
         
         try:
             manga_id = get_manga(self.search_title)
-            manga_chapter = get_chapter(chapter_index, manga_id)
+            manga_chapter = get_chapter_id(chapter_index, manga_id)
         except IndexError as e:
             self.error_message("Error: Manga not found!", e)
         except TypeError as e:
@@ -108,4 +109,8 @@ class MainWindow(QMainWindow):
 
 
     def read_chapter(self):
-        print("reading")
+        dialog = QDialog()
+        ui = reading_dialog_ui.Ui_Dialog()
+        ui.setupUi(dialog)
+
+        dialog.exec()
