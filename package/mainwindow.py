@@ -3,9 +3,11 @@ from package.ui import error_dialog_ui
 from package.ui import reading_dialog_ui
 from PyQt6 import QtWidgets
 from PyQt6 import QtCore
+from PyQt6.QtGui import QImage, QPixmap
 from PyQt6.QtWidgets import QMainWindow, QDialog, QPushButton
 from PyQt6.QtCore import QEvent, Qt
-from package.manga import get_manga, get_chapter_id
+from package.manga import get_manga, get_chapter_id, get_chapter, get_page 
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -14,10 +16,13 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.chapter_image = None
         self.ui.read_button = None
         self.ui.search_chapter_box = None
+        self.chapter = []
         self.search_title : str = ''
         self.search_chapter: str = ''
+        self.chapter_id: str = ''
 
         self.ui.search_box.installEventFilter(self)
 
@@ -40,12 +45,12 @@ class MainWindow(QMainWindow):
             if event.key() == Qt.Key.Key_Return:
                 self.search_chapter = self.ui.search_chapter_box.toPlainText()
 
-                chapter = self.manga_search(self.search_chapter)
+                self.chapter_id = self.manga_search(self.search_chapter)
 
-                if chapter != None:
+                if self.chapter_id != None:
                     self.spawn_read_button()
 
-                self.ui.result_label.setText(f"The chapter ID is: {chapter}")
+                self.ui.result_label.setText(f"The chapter ID is: {self.chapter_id}")
 
                 self.ui.search_chapter_box.clearFocus()
 
@@ -55,6 +60,9 @@ class MainWindow(QMainWindow):
 
 
     def spawn_chapter_box(self):
+        if self.ui.search_chapter_box != None:
+            return
+        
         self.ui.search_chapter_label = QtWidgets.QLabel(parent=self.ui.centralwidget)
         self.ui.search_chapter_label.setGeometry(QtCore.QRect(217, 90, 211, 16))
         self.ui.search_chapter_label.setObjectName("search_chapter_label")
@@ -103,7 +111,9 @@ class MainWindow(QMainWindow):
         ui.setupUi(dialog)
 
         dialog.setWindowTitle(message)
-        ui.label.setText(f"{message}\n\nException: {error_type.__str__().capitalize()}")
+
+        exception = error_type.__str__().capitalize()
+        ui.label.setText(f"{message}\n\nException: {exception}")
 
         dialog.exec()
 
@@ -112,5 +122,17 @@ class MainWindow(QMainWindow):
         dialog = QDialog()
         ui = reading_dialog_ui.Ui_Dialog()
         ui.setupUi(dialog)
+
+        self.chapter = get_chapter(self.chapter_id)
+
+        print("2")
+
+        #img = Image.open(requests.get(self.chapter[0], stream=True).raw)
+        #qim = ImageQt(img)
+        #pixmap = QPixmap.fromImage(qim)
+
+        pixmap = get_page(self.chapter[0])
+
+        ui.page_image.setPixmap(pixmap)
 
         dialog.exec()

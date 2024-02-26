@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>587</width>
-    <height>859</height>
+    <width>1108</width>
+    <height>857</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <iconset>
     <normaloff>../icons/mainwindow_icon.png</normaloff>../icons/mainwindow_icon.png</iconset>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>470</x>
      <y>830</y>
      <width>75</width>
      <height>24</height>
@@ -30,10 +30,10 @@
     <string>&lt;</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pushButton_2">
+  <widget class="QPushButton" name="next">
    <property name="geometry">
     <rect>
-     <x>310</x>
+     <x>590</x>
      <y>830</y>
      <width>75</width>
      <height>24</height>
@@ -41,6 +41,22 @@
    </property>
    <property name="text">
     <string>&gt;</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="page_image">
+   <property name="geometry">
+    <rect>
+     <x>18</x>
+     <y>15</y>
+     <width>1061</width>
+     <height>801</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
    </property>
   </widget>
  </widget>

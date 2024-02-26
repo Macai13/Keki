@@ -12,16 +12,21 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(587, 859)
+        Dialog.resize(1108, 857)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("designer\\../icons/mainwindow_icon.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         Dialog.setWindowIcon(icon)
-        self.pushButton = QtWidgets.QPushButton(parent=Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(190, 830, 75, 24))
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(parent=Dialog)
-        self.pushButton_2.setGeometry(QtCore.QRect(310, 830, 75, 24))
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.back_button = QtWidgets.QPushButton(parent=Dialog)
+        self.back_button.setGeometry(QtCore.QRect(470, 830, 75, 24))
+        self.back_button.setObjectName("back_button")
+        self.next = QtWidgets.QPushButton(parent=Dialog)
+        self.next.setGeometry(QtCore.QRect(590, 830, 75, 24))
+        self.next.setObjectName("next")
+        self.page_image = QtWidgets.QLabel(parent=Dialog)
+        self.page_image.setGeometry(QtCore.QRect(18, 15, 1061, 801))
+        self.page_image.setText("")
+        self.page_image.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+        self.page_image.setObjectName("page_image")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -29,5 +34,5 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Keki - Reading"))
-        self.pushButton.setText(_translate("Dialog", "<"))
-        self.pushButton_2.setText(_translate("Dialog", ">"))
+        self.back_button.setText(_translate("Dialog", "<"))
+        self.next.setText(_translate("Dialog", ">"))
