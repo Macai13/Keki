@@ -6,6 +6,7 @@ from PyQt6 import QtCore
 from PyQt6.QtGui import QImage, QPixmap
 from PyQt6.QtWidgets import QMainWindow, QDialog, QPushButton
 from PyQt6.QtCore import QEvent, Qt
+import qdarktheme
 from package.manga import get_manga, get_chapter_id, get_chapter, get_page 
 
 
@@ -15,6 +16,8 @@ class MainWindow(QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        qdarktheme.setup_theme()
 
         self.page_count = 0
         self.chapter_image = None
@@ -97,6 +100,7 @@ class MainWindow(QMainWindow):
     def manga_search(self, chapter_index: str):
         self.page_count = 0
         manga_chapter = None
+        manga_title = None
         
         try:
             manga_id = get_manga(self.search_title)
