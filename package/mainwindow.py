@@ -7,7 +7,7 @@ from PyQt6.QtGui import QImage, QPixmap
 from PyQt6.QtWidgets import QMainWindow, QDialog, QPushButton
 from PyQt6.QtCore import QEvent, Qt
 import qdarktheme
-from package.manga import get_manga, get_chapter_id, get_chapter, get_page 
+from package.manga import get_manga, get_chapter_id, get_chapter, get_page
 
 
 class MainWindow(QMainWindow):
@@ -107,8 +107,8 @@ class MainWindow(QMainWindow):
             manga_chapter, manga_title = get_chapter_id(chapter_index, manga_id, self.lang)
         except IndexError as e:
             self.error_message("Error: Manga not found!", e)
-        except TypeError as e:
-            self.error_message("Error: Chapter not found!", e)
+
+            return manga_chapter, manga_title
         if manga_chapter == None:
             self.error_message("Error: Chapter not found!")
 
@@ -129,11 +129,19 @@ class MainWindow(QMainWindow):
 
 
     def read_chapter(self):
+        if self.search_title != self.ui.search_box.toPlainText() or self.search_chapter != self.ui.search_chapter_box.toPlainText():
+            self.update_manga_search()
+        
         dialog = QDialog()
         ui = reading_dialog_ui.Ui_Dialog()
         ui.setupUi(dialog)
 
-        self.chapter = get_chapter(self.chapter_id)
+        try:
+            self.chapter = get_chapter(self.chapter_id)
+        except TypeError as e:
+            self.error_message("Error: API error!")
+
+            return
 
         self.set_page(ui)
 
@@ -163,5 +171,19 @@ class MainWindow(QMainWindow):
         ui.page_image.setPixmap(self.chapter_image)
 
 
+    def update_manga_search(self):
+        self.search_title = self.ui.search_box.toPlainText()
+        self.search_chapter = self.ui.search_chapter_box.toPlainText()
+
+        self.chapter_id, self.manga_title = self.manga_search(self.search_chapter)
+
+        self.ui.result_label.setText(f"The manga title is: {self.manga_title}\nThe chapter ID is: {self.chapter_id}")
+
+
     def set_lang(self, lang: str):
+        self.lang = lang
+        
+        if None != self.ui.search_box.toPlainText() and None != self.ui.search_chapter_box.toPlainText():
+            self.update_manga_search()
+        
         self.lang = lang

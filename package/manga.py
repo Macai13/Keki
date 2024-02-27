@@ -7,10 +7,14 @@ from PIL.ImageQt import ImageQt
 from PyQt6.QtGui import QPixmap
 
 API = mangadex.Api()
+title: str = ''
 
 def get_manga(manga_title: str):    
+    global title
+    
     manga_list = API.get_manga_list(title=manga_title)
     manga_id = manga_list[0].manga_id
+    title = manga_list[0].title["en"]
 
     return manga_id
 
@@ -26,9 +30,9 @@ def get_chapter_id(chapter_index: str, manga_id: str, lang: str):
     for chapter in r.json()["data"]:
         if chapter_index == chapter["attributes"]["chapter"]:
             print(chapter)
-            return (chapter["id"], chapter["attributes"]["title"])
+            return (chapter["id"], title)
 
-    return None 
+    return None, title
 
 
 def get_chapter(chapter_id: str):
