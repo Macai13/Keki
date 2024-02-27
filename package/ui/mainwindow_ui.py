@@ -35,6 +35,8 @@ class Ui_MainWindow(object):
         self.ptbr_button.setObjectName("ptbr_button")
         self.en_button = QtWidgets.QRadioButton(parent=self.centralwidget)
         self.en_button.setGeometry(QtCore.QRect(668, 60, 111, 20))
+        self.en_button.setFocusPolicy(QtCore.Qt.FocusPolicy.StrongFocus)
+        self.en_button.setChecked(True)
         self.en_button.setObjectName("en_button")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
