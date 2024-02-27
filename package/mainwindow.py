@@ -147,7 +147,9 @@ class MainWindow(QMainWindow):
     def set_page(self, ui):
         try:    
             self.chapter_image = get_page(self.chapter[self.page_count])
+            ui.page_number.setText(f"{self.page_count + 1}/{len(self.chapter)}")
         except IndexError as e:
             self.error_message("Error: No more pages!", e)
+            self.page_count -= 1
 
         ui.page_image.setPixmap(self.chapter_image)

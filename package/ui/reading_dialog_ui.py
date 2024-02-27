@@ -27,6 +27,10 @@ class Ui_Dialog(object):
         self.page_image.setText("")
         self.page_image.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.page_image.setObjectName("page_image")
+        self.page_number = QtWidgets.QLabel(parent=Dialog)
+        self.page_number.setGeometry(QtCore.QRect(520, 0, 49, 16))
+        self.page_number.setText("")
+        self.page_number.setObjectName("page_number")
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
