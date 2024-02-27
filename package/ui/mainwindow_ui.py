@@ -30,6 +30,12 @@ class Ui_MainWindow(object):
         self.result_label.setGeometry(QtCore.QRect(10, 440, 771, 151))
         self.result_label.setText("")
         self.result_label.setObjectName("result_label")
+        self.ptbr_button = QtWidgets.QRadioButton(parent=self.centralwidget)
+        self.ptbr_button.setGeometry(QtCore.QRect(668, 30, 111, 20))
+        self.ptbr_button.setObjectName("ptbr_button")
+        self.en_button = QtWidgets.QRadioButton(parent=self.centralwidget)
+        self.en_button.setGeometry(QtCore.QRect(668, 60, 111, 20))
+        self.en_button.setObjectName("en_button")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(parent=MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -42,3 +48,5 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Keki"))
         self.search_label.setText(_translate("MainWindow", "What manga do you wanna read?"))
+        self.ptbr_button.setText(_translate("MainWindow", "portuguese"))
+        self.en_button.setText(_translate("MainWindow", "english"))

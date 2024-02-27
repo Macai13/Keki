@@ -15,18 +15,18 @@ def get_manga(manga_title: str):
     return manga_id
 
 
-def get_chapter_id(chapter_index: str, manga_id: str):
+def get_chapter_id(chapter_index: str, manga_id: str, lang: str):
     base_url = "https://api.mangadex.org"
 
     r = requests.get(
         f"{base_url}/manga/{manga_id}/feed",
-        params={"translatedLanguage[]": "en"},
+        params={"translatedLanguage[]": f"{lang}"},
     )
 
     for chapter in r.json()["data"]:
         if chapter_index == chapter["attributes"]["chapter"]:
             print(chapter)
-            return chapter["id"]
+            return (chapter["id"], chapter["attributes"]["title"])
 
     return None 
 

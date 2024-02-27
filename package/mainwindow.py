@@ -21,11 +21,15 @@ class MainWindow(QMainWindow):
         self.ui.read_button = None
         self.ui.search_chapter_box = None
         self.chapter = []
+        self.lang: str = "en"
+        self.manga_title: str = ''
         self.search_title : str = ''
         self.search_chapter: str = ''
         self.chapter_id: str = ''
 
         self.ui.search_box.installEventFilter(self)
+        self.ui.en_button.clicked.connect(lambda: self.set_lang("en"))
+        self.ui.ptbr_button.clicked.connect(lambda: self.set_lang("pt-br"))
 
         self.show()
 
@@ -46,12 +50,12 @@ class MainWindow(QMainWindow):
             if event.key() == Qt.Key.Key_Return:
                 self.search_chapter = self.ui.search_chapter_box.toPlainText()
 
-                self.chapter_id = self.manga_search(self.search_chapter)
+                self.chapter_id, self.manga_title = self.manga_search(self.search_chapter)
 
                 if self.chapter_id != None:
                     self.spawn_read_button()
 
-                self.ui.result_label.setText(f"The chapter ID is: {self.chapter_id}")
+                self.ui.result_label.setText(f"The manga title is: {self.manga_title}\nThe chapter ID is: {self.chapter_id}")
 
                 self.ui.search_chapter_box.clearFocus()
 
@@ -96,7 +100,7 @@ class MainWindow(QMainWindow):
         
         try:
             manga_id = get_manga(self.search_title)
-            manga_chapter = get_chapter_id(chapter_index, manga_id)
+            manga_chapter, manga_title = get_chapter_id(chapter_index, manga_id, self.lang)
         except IndexError as e:
             self.error_message("Error: Manga not found!", e)
         except TypeError as e:
@@ -104,7 +108,7 @@ class MainWindow(QMainWindow):
         if manga_chapter == None:
             self.error_message("Error: Chapter not found!")
 
-        return manga_chapter
+        return manga_chapter, manga_title
 
 
     def error_message(self, message: str, error_type: Exception = None):
@@ -153,3 +157,7 @@ class MainWindow(QMainWindow):
             self.page_count -= 1
 
         ui.page_image.setPixmap(self.chapter_image)
+
+
+    def set_lang(self, lang: str):
+        self.lang = lang

@@ -66,6 +66,32 @@
      <string/>
     </property>
    </widget>
+   <widget class="QRadioButton" name="ptbr_button">
+    <property name="geometry">
+     <rect>
+      <x>668</x>
+      <y>30</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>portuguese</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="en_button">
+    <property name="geometry">
+     <rect>
+      <x>668</x>
+      <y>60</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>english</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
