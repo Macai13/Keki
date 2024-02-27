@@ -24,8 +24,9 @@ def get_chapter_id(chapter_index: str, manga_id: str):
     )
 
     for chapter in r.json()["data"]:
-        if chapter_index in chapter['attributes']['chapter']:
-            return chapter['id']
+        if chapter_index == chapter["attributes"]["chapter"]:
+            print(chapter)
+            return chapter["id"]
 
     return None 
 
