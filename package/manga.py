@@ -1,8 +1,6 @@
 import mangadex
 import requests
-import PIL
 from PIL import Image
-from io import BytesIO
 from PIL.ImageQt import ImageQt
 from PyQt6.QtGui import QPixmap
 
