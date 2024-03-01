@@ -183,7 +183,8 @@ class MainWindow(QMainWindow):
     def set_lang(self, lang: str):
         self.lang = lang
         
+        if self.ui.search_chapter_box == None:
+            return
+
         if None != self.ui.search_box.toPlainText() and None != self.ui.search_chapter_box.toPlainText():
             self.update_manga_search()
-        
-        self.lang = lang
